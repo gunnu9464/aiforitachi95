@@ -6,7 +6,7 @@ const express = require('express');
 const MINECRAFT_HOST = 'Itachi95.aternos.me';
 const MINECRAFT_PORT = 13889;
 const MINECRAFT_USERNAME = 'AI'; // Bot's name set to AI
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'your-gemini-api-key-here';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDuLPCqWPkkNIXuzHsijqGtZFnT3J7MOn8';
 
 // ==== HEALTH CHECK SERVER FOR UPTIMEROBOT ====
 const app = express();
