@@ -6,7 +6,7 @@ const express = require('express');
 const MINECRAFT_HOST = 'Itachi95.aternos.me';
 const MINECRAFT_PORT = 13889;
 const MINECRAFT_USERNAME = 'AI'; // Bot's name set to AI
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDuLPCqWPkkNIXuzHsijqGtZFnT3J7MOn8';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'your-gemini-api-key-here';
 
 // ==== HEALTH CHECK SERVER FOR UPTIMEROBOT ====
 const app = express();
@@ -14,15 +14,15 @@ const PORT = process.env.PORT || 3000;
 app.get('/health', (req, res) => res.send('OK'));
 app.listen(PORT, () => console.log(`Health check running on port ${PORT}`));
 
-// ==== GEMINI AI CALL ====
+// ==== GEMINI 2.0 FLASH CALL ====
 async function askGemini(prompt) {
   try {
-    const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+    const url = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash-latest:generateContent';
     const response = await axios.post(
       url + '?key=' + GEMINI_API_KEY,
       {
         contents: [
-          { parts: [{ text: prompt }] }
+          { role: 'user', parts: [{ text: prompt }] }
         ]
       },
       { headers: { 'Content-Type': 'application/json' } }
