@@ -17,7 +17,7 @@ app.listen(PORT, () => console.log(`Health check running on port ${PORT}`));
 // ==== GEMINI 2.0 FLASH CALL ====
 async function askGemini(prompt) {
   try {
-    const url = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash-latest:generateContent';
+    const url = 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent';
     const response = await axios.post(
       url + '?key=' + GEMINI_API_KEY,
       {
