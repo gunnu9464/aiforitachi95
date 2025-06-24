@@ -12,6 +12,10 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDuLPCqWPkkNIXuzHsijq
 const app = express();
 const PORT = process.env.PORT || 3000;
 app.get('/health', (req, res) => res.send('OK'));
+
+// Add this to handle root URL
+app.get('/', (req, res) => res.send('Hello from the Minecraft Gemini bot!'));
+
 app.listen(PORT, () => console.log(`Health check running on port ${PORT}`));
 
 // ==== GEMINI 2.0 FLASH CALL ====
