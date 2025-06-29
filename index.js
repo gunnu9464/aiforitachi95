@@ -2,16 +2,23 @@ const mineflayer = require('mineflayer');
 const http = require('http');
 
 // === CONFIGURATION ===
-const BOT_USERNAME = process.env.BOT_USERNAME || "AternosBot" + Math.floor(Math.random() * 1000);
+const BASE_BOT_NAME = process.env.BOT_USERNAME || "AternosBot";
 const SERVER_IP = process.env.SERVER_IP || "itachi95.aternos.me";
-const SERVER_PORT = parseInt(process.env.SERVER_PORT) || 13889;
+const SERVER_PORT = parseInt(process.env.SERVER_PORT) || 138898;
 
 // === BOT LOGIC ===
+function getRandomBotName() {
+  // Add 4 random digits to base name
+  return BASE_BOT_NAME + Math.floor(1000 + Math.random() * 9000);
+}
+
 function createBot() {
+  const botUsername = getRandomBotName();
+  console.log(`Starting bot with username: ${botUsername}`);
   const bot = mineflayer.createBot({
     host: SERVER_IP,
     port: SERVER_PORT,
-    username: BOT_USERNAME,
+    username: botUsername,
     version: false
   });
 
@@ -44,17 +51,18 @@ function createBot() {
   });
 
   bot.on('end', () => {
-    console.log('Bot disconnected, reconnecting in 10 seconds...');
+    console.log('Bot disconnected, reconnecting in 10 seconds with a new name...');
     setTimeout(createBot, 10000);
   });
 
   bot.on('error', err => {
-    console.log('Bot error:', err.message, 'Reconnecting in 15 seconds...');
+    console.log('Bot error:', err.message, 'Reconnecting in 15 seconds with a new name...');
     setTimeout(createBot, 15000);
   });
 
   bot.on('kicked', (reason) => {
-    console.log('Bot was kicked:', reason);
+    console.log('Bot was kicked:', reason, 'Reconnecting in 15 seconds with a new name...');
+    setTimeout(createBot, 15000);
   });
 }
 
