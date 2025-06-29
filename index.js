@@ -4,7 +4,7 @@ const http = require('http');
 // === CONFIGURATION ===
 const BOT_USERNAME = process.env.BOT_USERNAME || "AternosBot" + Math.floor(Math.random() * 1000);
 const SERVER_IP = process.env.SERVER_IP || "itachi95.aternos.me";
-const SERVER_PORT = parseInt(process.env.SERVER_PORT) || 138898;
+const SERVER_PORT = parseInt(process.env.SERVER_PORT) || 13889;
 
 // === BOT LOGIC ===
 function createBot() {
